@@ -48,4 +48,11 @@ Add screenshots to `screenshots/` (redacted as needed):
 - [ ] Initial failed logon spike (platform view)
 - [ ] Pivot showing top source + top targeted user
 - [ ] Any successful logon (if present) and context around it
--
+- [ ] Account lockout evidence (if present)
+- [ ] Final supporting screenshot that confirms the conclusion
+
+## Files in this case
+- `timeline.md` — ordered event sequence with timestamps
+- `iocs.md` — artifacts collected (sanitized)
+- `queries.md` — investigation pivots (Splunk/Elastic/Wazuh)
+- `screenshots/` — redacted evidence
