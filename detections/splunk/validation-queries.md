@@ -15,6 +15,7 @@ These searches are used to quickly confirm:
 - Purpose: confirm Security log ingestion (e.g., logons/failures)
 - Expected: events returned within last X minutes
 
-```spl
-# TBD: search Security events in last 15m
+### 2) Confirm Sysmon events are flowing
+- Purpose: confirm Sysmon ingestion (process/network)
+- Expected: Sysmon Event ID 1 and/or 3 appear
 
