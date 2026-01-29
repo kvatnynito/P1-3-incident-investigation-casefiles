@@ -12,3 +12,8 @@ This folder contains the written documentation for this repo.
 ## Key files
 - `lab-dependencies.md` — what this repo relies on (P1-1 lab + P1-2 telemetry)
 - `attack-scenarios.md` — planned scenarios and what telemetry they generate
+- `investigation-workflow.md` — repeatable approach for each case file
+- `sanitization.md` — what I redact and what I publish safely
+
+## Evidence
+Screenshots live in `/screenshots` and are referenced from case files and docs as each scenario is implemented.
