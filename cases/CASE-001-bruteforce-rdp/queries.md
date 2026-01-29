@@ -8,7 +8,7 @@ Document the minimal set of queries used to:
 3) confirm outcome (lockout/success),
 4) check for follow-on activity.
 
-> Add your exact index/sourcetype names later. Keep these queries sanitized.
+Add your exact index/sourcetype names later. Keep these queries sanitized.
 
 ---
 
