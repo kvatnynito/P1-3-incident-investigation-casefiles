@@ -7,7 +7,7 @@ This repo contains **sanitized incident-style case files** built from my homelab
 This repo uses representative hostnames/IP ranges and redacts WAN/public IPs, domains/DDNS, VPN details, and secrets. The investigation workflow is accurate, but identifiers may be modified.
 
 ## Why I’m building this
-I wanted a place to practice the part that matters in interviews:
+I wanted a place to practice:
 - turning raw telemetry into an investigation story
 - showing how I pivot from one event to the next
 - documenting conclusions clearly (what happened, when, how I know)
