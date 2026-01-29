@@ -13,6 +13,15 @@ I wanted a structured way to practice the “end-to-end” cycle of security wor
 - turning raw events into a timeline and clear conclusions
 - capturing lessons learned (detection tuning, hardening ideas, and rule improvements)
 
+As I’ve been learning security monitoring and incident response, I kept noticing the same patterns come up—failed logons, suspicious PowerShell, noisy web attacks, and “maybe this is nothing” events that still need a clean way to validate.
+
+This repo is my way of practicing that in a controlled lab:
+- create realistic activity on purpose (so I know what “ground truth” looks like)
+- confirm the telemetry is actually captured end-to-end
+- investigate using consistent pivots (user → host → process → network)
+- write down what happened, what evidence supports it, and what I’d improve next time (rules, logging, hardening)
+
+
 ## Dependencies
 These case files build on:
 - `P1-1-proxmox-segmentation-lab` (segmentation + VM inventory)
