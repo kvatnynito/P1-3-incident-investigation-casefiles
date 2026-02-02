@@ -20,7 +20,6 @@ When something looks suspicious (like brute force login attempts or weird PowerS
 The `/cases` folder contains complete write-ups (CASE-001, CASE-002, etc.).
 Each case includes a `queries.md` file that links to the searches/queries I used.
 
-Think of it like:
 - **Cases = the story**
 - **Detections = the tools used to find the facts**
 
