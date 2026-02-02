@@ -10,14 +10,18 @@ Document pivots to:
 ---
 
 ## Splunk (SPL) — Placeholders
-# TBD: search web/app logs for suspicious patterns (paths/params/payloads)
-# TBD: pivot by source IP and time window
-# TBD: correlate to host Sysmon events on the target during the window
+TBD: search web/app logs for suspicious patterns (paths/params/payloads)
+TBD: pivot by source IP and time window
+TBD: correlate to host Sysmon events on the target during the window
+
+---
 
 ## Elastic (KQL) — Placeholders
-# TBD: query web/app logs data view for suspicious request patterns
-# TBD: correlate with host process/network events (if available)
+TBD: query web/app logs data view for suspicious request patterns
+TBD: correlate with host process/network events (if available)
+
+---
 
 ## Wazuh — Placeholders
-# TBD: locate relevant alerts/events (web host + endpoint telemetry)
-# TBD: capture evidence screenshots
+TBD: locate relevant alerts/events (web host + endpoint telemetry)
+TBD: capture evidence screenshots
