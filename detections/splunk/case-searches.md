@@ -35,8 +35,12 @@ When a case is implemented:
 ### Outcome check — account lockouts (4740) ###
 **Purpose:** confirm whether a lockout occurred due to brute forCASE-002: Suspicious PowerShell (planned)
 
+---
+
 ### CASE-002: Suspicious PowerShell (planned) ###
 **Goal:** identify suspicious PowerShell execution and related child processes or network calls.
+
+---
 
 ### CASE-003: Web Attack (DVWA/WebGoat) (planned) ###
 **Goal:** identify web attack patterns and correlate to host/network telemetry
