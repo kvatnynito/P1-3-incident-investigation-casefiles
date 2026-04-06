@@ -160,8 +160,4 @@ When work begins on this repo, the initial implementation focus will likely be:
 - build the first complete investigation timeline
 - store the first sanitized case file with supporting evidence
 
----
 
-## License
-
-MIT — see `LICENSE`.
