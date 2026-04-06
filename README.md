@@ -1,6 +1,6 @@
 https://github.com/kvatnynito/Cybersecurity-Portfolio1
 
-# P1-3: Incident Investigation Case Files (Attack Simulation + Triage)
+# P1-3: Incident Investigation Case Files (Attack Simulation/Triage)
 
 ## Overview
 This repo contains **sanitized incident-style case files** generated from my homelab. Each case documents a complete workflow: simulate activity, confirm telemetry capture, investigate using platform queries, build a timeline, and record findings and improvements.
