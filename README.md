@@ -20,7 +20,7 @@ This project is the final repo in Portfolio 1 and is planned to build on the lab
 **Execution state:** Blueprint stage / not yet started  
 **Prerequisites:** `P1-1-proxmox-segmentation-lab` and `P1-2-wef-sysmon-to-wazuh-elastic-splunk`
 
-I’m preparing this repo in advance so the case structure, workflow, and starter scenarios are already defined before the first full investigation is built.
+I have already defined the case structure, workflow, and starter scenarios before the first full investigation is built.
 
 ---
 
@@ -56,10 +56,12 @@ This repo is meant to be my way of practicing that in a controlled lab:
 
 These planned case files are intended to build on:
 
-- `P1-1-proxmox-segmentation-lab` for segmentation, VM placement, and network context
-- `P1-2-wef-sysmon-to-wazuh-elastic-splunk` for telemetry collection, forwarding, and searchability
+- [`P1-1-proxmox-segmentation-lab`](https://github.com/kvatnynito/P1-1-proxmox-segmentation-lab) for segmentation, VM placement, and network context
+- [`P1-2-wef-sysmon-to-wazuh-elastic-splunk`](https://github.com/kvatnynito/P1-2-wef-sysmon-to-wazuh-elastic-splunk) for telemetry collection, forwarding, and searchability
 
 Without those earlier repos in place, this repo remains in blueprint stage.
+
+For full dependency details, see [`docs/lab-dependencies.md`](docs/lab-dependencies.md).
 
 ---
 
