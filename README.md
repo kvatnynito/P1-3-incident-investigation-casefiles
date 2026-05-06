@@ -20,15 +20,9 @@ This project is the final repo in Portfolio 1 and is planned to build on the lab
 **Execution state:** Blueprint stage / not yet started  
 **Prerequisites:** `P1-1-proxmox-segmentation-lab` and `P1-2-wef-sysmon-to-wazuh-elastic-splunk`
 
-I have already defined the case structure, workflow, and starter scenarios before the first full investigation is built.
+The case folders, workflow, and starter scenarios have been defined before the first full investigation is built.
 
----
-
-## Sanitization Note
-
-This repo uses representative hostnames and IP ranges and redacts WAN/public IPs, domains/DDNS, VPN details, and secrets.
-
-The workflow is intended to remain accurate, but specific identifiers may be modified for safety.
+At this point, the repo remains in blueprint stage until the required telemetry is validated in P1-2.
 
 ---
 
@@ -65,6 +59,14 @@ For full dependency details, see [`docs/lab-dependencies.md`](docs/lab-dependenc
 
 ---
 
+## Sanitization Note
+
+This repo uses representative hostnames and IP ranges and redacts WAN/public IPs, domains/DDNS, VPN details, and secrets.
+
+The workflow is intended to remain accurate, but specific identifiers may be modified for safety.
+
+---
+
 ## Planned Case File Format
 
 Each future case folder is expected to include:
@@ -73,7 +75,7 @@ Each future case folder is expected to include:
 - `timeline.md` — timestamps and sequence of events
 - `iocs.md` — artifacts such as users, hosts, IPs, and hashes, sanitized as needed
 - `queries.md` — Splunk SPL, Elastic queries, Wazuh pivots, or other search logic used
-- `screenshots/` — redacted evidence
+- `screenshots.md` or `screenshots/` — redacted evidence references
 
 ---
 
@@ -82,40 +84,47 @@ Each future case folder is expected to include:
 Once execution begins, the intended workflow for each case is:
 
 ### 1. Simulate or trigger activity
+
 - generate realistic lab activity on purpose
 - record the expected ground truth
 
 ### 2. Confirm telemetry capture
+
 - verify the relevant events were captured through the pipeline
 - confirm the activity is visible in the target platforms
 
 ### 3. Investigate the event
+
 - pivot across host, user, process, and network activity
 - identify the sequence of actions
 - collect supporting evidence
 
 ### 4. Build a case file
+
 - write the timeline
 - record artifacts and queries used
 - summarize findings and analyst conclusions
 
 ### 5. Capture follow-up improvements
+
 - note detection tuning ideas
 - identify logging gaps
 - record hardening or response improvements
 
 ---
 
-## Starter Cases (Planned)
+## Starter Cases
 
-- **CASE-001:** Brute force → successful logon  
-  *Focus:* Windows authentication and logon visibility
+The repo currently includes starter folders for the following planned cases:
+
+- **CASE-001:** Brute force RDP investigation  
+  *Focus:* Windows authentication, RDP activity, failed logons, successful logons, and account/host pivots
 
 - **CASE-002:** Suspicious PowerShell execution  
-  *Focus:* endpoint behavior and process investigation
+  *Focus:* endpoint behavior, process investigation, command-line review, and Sysmon visibility
 
-- **CASE-003:** Web attack against DVWA / WebGoat  
-  *Focus:* web activity, attacker behavior, and event correlation
+- **CASE-003:** Web attack against DVWA  
+  *Focus:* web activity, attacker behavior, firewall/web telemetry, and event correlation
 
 ---
 
@@ -127,7 +136,7 @@ This repo is expected to eventually include:
 - timelines and investigation summaries
 - IOC and artifact documentation
 - platform-specific queries and pivots
-- redacted evidence screenshots
+- redacted evidence screenshots or screenshot references
 - lessons learned and improvement notes tied to each case
 
 ---
@@ -146,22 +155,25 @@ This project is intended to help build experience in:
 
 ---
 
-## Current Status
-
-Blueprint stage.
-
-At this point, I am defining the structure, templates, and starter cases so the repo is ready once the lab foundation and telemetry pipeline are in place.
-
----
-
 ## Planned Next Steps
 
-When work begins on this repo, the initial implementation focus will likely be:
+When work begins on this repo, the initial implementation focus will be:
 
-- finalize case templates
-- choose the first simulated scenario
-- confirm that required telemetry exists in the pipeline
+- confirm that required telemetry exists in P1-2
+- begin `CASE-001-bruteforce-rdp`
+- document the simulated scenario and ground truth
+- search the validated telemetry platforms
 - build the first complete investigation timeline
 - store the first sanitized case file with supporting evidence
 
+---
 
+## Portfolio Completion Note
+
+P1-3 is planned as the final repo in Portfolio 1.
+
+When the planned investigation cases are completed with validated evidence, timelines, queries, screenshots or screenshot references, and analyst conclusions, Portfolio 1 will demonstrate the full workflow:
+
+- P1-1 — segmented lab infrastructure
+- P1-2 — telemetry collection and validation
+- P1-3 — incident investigation case files
