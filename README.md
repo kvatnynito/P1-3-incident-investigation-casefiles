@@ -1,6 +1,8 @@
-https://github.com/kvatnynito/Cybersecurity-Portfolio1
-
 # P1-3: Incident Investigation Case Files (Attack Simulation / Triage)
+
+P1-3 is part of Portfolio 1 (P1) — Lab Infrastructure, Telemetry, and Investigation Case Files
+
+**Portfolio Hub:** [Cybersecurity Portfolio 1](https://github.com/kvatnynito/Cybersecurity-Portfolio1)
 
 ## Overview
 
