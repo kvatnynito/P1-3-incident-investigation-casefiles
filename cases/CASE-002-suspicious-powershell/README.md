@@ -1,8 +1,25 @@
 # CASE-002: Suspicious PowerShell Execution
-Status: Draft (to be updated during implementation)
+
+**Status:** Planned / not validated
+**Curriculum position:** Lab 02 — Beginner
 
 ## Scenario Summary
 This case simulates suspicious PowerShell activity on a Windows endpoint and documents the investigation workflow from initial signal to conclusion.
+
+## Ordered Steps
+
+1. Generate controlled, harmless suspicious-looking PowerShell activity.
+2. Find the PowerShell execution in the logs.
+3. Identify the user, hostname, command line, and parent process.
+4. Determine what the command attempted to do.
+5. Check for related file changes, child processes, or outbound connections.
+6. Classify the behavior as benign, suspicious, malicious, or needs more data.
+7. Map the activity to MITRE ATT&CK.
+8. Document the investigation and recommended response.
+
+## Safety
+
+Use only benign commands designed to create observable telemetry. Do not use live payloads, credential theft, destructive actions, or internet-hosted malicious infrastructure.
 
 ## Why I’m doing this case
 - Practice identifying suspicious command execution and common PowerShell abuse patterns

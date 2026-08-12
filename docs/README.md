@@ -1,5 +1,6 @@
 # Docs
-Status: Draft (to be updated during implementation)
+
+**Status:** Curriculum scaffolded / investigations not yet validated
 
 This folder contains the written documentation for this repo.
 
@@ -10,8 +11,11 @@ This folder contains the written documentation for this repo.
 - Sanitization and safe publishing guidelines
 
 ## Key files
+- `plan.md` — canonical ten-lab curriculum, numbered steps, sequencing, and completion gate
+- `current-status.md` — live project state and next safe action
+- `incident-report-template.md` — mandatory findings, MITRE ATT&CK, disposition, and response structure
 - `lab-dependencies.md` — what this repo relies on (P1-1 lab + P1-2 telemetry)
-- `attack-scenarios.md` — planned scenarios and what telemetry they generate
+- `attack-scenarios.md` — scenario-family overview pointing to the canonical plan
 - `investigation-workflow.md` — repeatable approach for each case file
 - `sanitization.md` — what I redact and what I publish safely
 

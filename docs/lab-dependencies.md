@@ -53,9 +53,17 @@ P1-3 uses those completed foundations to investigate simulated security activity
 
 | Case | Investigation Focus | Required P1-2 Telemetry | Status |
 |---|---|---|---|
-| CASE-001-bruteforce-rdp | RDP brute force and logon review | Windows authentication logs, failed logons, successful logons, source/destination visibility | Waiting on P1-2 |
-| CASE-002-suspicious-powershell | Suspicious PowerShell execution | Sysmon process creation, command line logging, user/host context | Waiting on P1-2 |
+| CASE-001-bruteforce-rdp | Failed logins/password spray | Windows authentication logs, failed/successful logons, source/destination visibility | Ready for live power/telemetry check |
+| CASE-002-suspicious-powershell | Suspicious PowerShell execution | Sysmon process creation, command line logging, user/host context | Ready for live power/telemetry check |
 | CASE-003-web-attack-dvwa | Web attack against DVWA | DVWA/web logs if available, pfSense firewall logs, attacker/target visibility | Waiting on P1-2 |
+| CASE-004-suspicious-dns | DNS anomaly and process correlation | Sysmon DNS queries, process/user/host context, optional DNS/network logs | Ready for live power/telemetry check |
+| CASE-005-suspicious-outbound-connection | Endpoint and network correlation | Sysmon network connections, DNS, optional pfSense/packet evidence | Ready for live power/telemetry check |
+| CASE-006-bruteforce-vs-password-spray | Authentication-pattern comparison | Windows failed/successful logons across multiple disposable accounts | Ready for live power/telemetry check |
+| CASE-007-vulnerability-management | Scan-to-remediation lifecycle | Approved scanner and scoped targets | Blocked: scanner workflow not built |
+| CASE-008-suspicious-file-simulation | Harmless file/process investigation | File/process telemetry and reversible test artifact | Ready for live power/telemetry check |
+| CASE-009-privilege-escalation | Privilege-change investigation | Account/group, logon, and process telemetry | Ready for live power/telemetry check |
+| CASE-010-persistence | Persistence creation/removal | Scheduled-task or registry telemetry plus process/authentication context | Ready for live power/telemetry check |
+| CASE-011-lateral-movement | Multi-host reconstruction | Two Windows telemetry sources plus authentication/network/process visibility | Blocked: second telemetry-ready Windows host needed |
 
 ---
 
@@ -138,13 +146,15 @@ Multi-platform comparison belongs later, after the first case has enough evidenc
 | Dependency | Status |
 |---|---|
 | P1-1 segmented lab foundation | Complete |
-| P1-2 Splunk ingestion | Planned / in progress |
-| P1-2 Windows authentication telemetry | Not yet validated |
-| P1-2 Sysmon telemetry | Not yet validated |
-| P1-2 WEF or Windows log forwarding | Not yet validated |
+| P1-2 Splunk ingestion | Validated for WEC01 Forwarded Events |
+| P1-2 Windows authentication telemetry | Validated through WEF/Splunk |
+| P1-2 Sysmon telemetry | Validated locally and through WEF/Splunk |
+| P1-2 WEF or Windows log forwarding | Validated for Security, Sysmon, Application, and System |
 | P1-2 Wazuh ingestion | Not yet validated |
 | P1-2 Elastic ingestion | Not yet validated |
 | P1-2 DVWA/web telemetry | Not yet validated |
+
+The first Windows/Splunk investigations no longer need to wait for Wazuh or Elastic. Use the validated Splunk path and label unavailable-platform comparisons as future work.
 
 ---
 

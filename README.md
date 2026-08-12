@@ -17,12 +17,12 @@ This project is the final repo in Portfolio 1 and is planned to build on the lab
 ## Status
 
 **Current state:** Planned  
-**Execution state:** Blueprint stage / not yet started  
+**Execution state:** Ten-lab investigation curriculum scaffolded; no case executed yet
 **Prerequisites:** `P1-1-proxmox-segmentation-lab` and `P1-2-wef-sysmon-to-wazuh-elastic-splunk`
 
 The case folders, workflow, and starter scenarios have been defined before the first full investigation is built.
 
-At this point, the repo remains in blueprint stage until the required telemetry is validated in P1-2.
+The Windows → WEF → Splunk pipeline required by the first investigations is now validated in P1-2. Individual cases remain planned until their own scenario is executed and their evidence is captured. See [`docs/plan.md`](docs/plan.md) for the ordered curriculum.
 
 ---
 
@@ -53,7 +53,7 @@ These planned case files are intended to build on:
 - [`P1-1-proxmox-segmentation-lab`](https://github.com/kvatnynito/P1-1-proxmox-segmentation-lab) for segmentation, VM placement, and network context
 - [`P1-2-wef-sysmon-to-wazuh-elastic-splunk`](https://github.com/kvatnynito/P1-2-wef-sysmon-to-wazuh-elastic-splunk) for telemetry collection, forwarding, and searchability
 
-Without those earlier repos in place, this repo remains in blueprint stage.
+P1-1 and the Splunk portion of P1-2 now provide the foundation for the first cases. Cases that need unbuilt systems or telemetry remain individually blocked rather than blocking the whole curriculum.
 
 For full dependency details, see [`docs/lab-dependencies.md`](docs/lab-dependencies.md).
 
@@ -76,6 +76,7 @@ Each future case folder is expected to include:
 - `iocs.md` — artifacts such as users, hosts, IPs, and hashes, sanitized as needed
 - `queries.md` — Splunk SPL, Elastic queries, Wazuh pivots, or other search logic used
 - `screenshots.md` or `screenshots/` — redacted evidence references
+- a completed incident-report structure in the case `README.md`, including findings, disposition, MITRE ATT&CK mapping, and response recommendations
 
 ---
 
@@ -113,18 +114,22 @@ Once execution begins, the intended workflow for each case is:
 
 ---
 
-## Starter Cases
+## Investigation Curriculum
 
-The repo currently includes starter folders for the following planned cases:
+P1-3 now contains a progressive ten-lab sequence:
 
-- **CASE-001:** Brute force RDP investigation  
-  *Focus:* Windows authentication, RDP activity, failed logons, successful logons, and account/host pivots
+1. Failed logins / password spray
+2. Suspicious PowerShell
+3. Suspicious DNS activity
+4. Suspicious outbound connection
+5. Brute force vs. password spraying
+6. Vulnerability management
+7. Suspicious file / malware simulation
+8. Privilege escalation
+9. Persistence
+10. Lateral movement
 
-- **CASE-002:** Suspicious PowerShell execution  
-  *Focus:* endpoint behavior, process investigation, command-line review, and Sysmon visibility
-
-- **CASE-003:** Web attack against DVWA  
-  *Focus:* web activity, attacker behavior, firewall/web telemetry, and event correlation
+Each lab has a separate case folder with numbered steps, query notes, a timeline, an artifact register, and an evidence index. The existing DVWA web-attack blueprint remains as an additional P1-3 case. See the [full plan](docs/plan.md) and [case index](cases/README.md).
 
 ---
 
@@ -157,12 +162,12 @@ This project is intended to help build experience in:
 
 ## Planned Next Steps
 
-When work begins on this repo, the initial implementation focus will be:
+The initial implementation focus is:
 
-- confirm that required telemetry exists in P1-2
+- confirm the required VMs are powered on and the validated P1-2 telemetry path still works
 - begin `CASE-001-bruteforce-rdp`
-- document the simulated scenario and ground truth
-- search the validated telemetry platforms
+- document a controlled failed-login/password-spray scenario and ground truth
+- search Splunk first using the validated WEF pipeline
 - build the first complete investigation timeline
 - store the first sanitized case file with supporting evidence
 
