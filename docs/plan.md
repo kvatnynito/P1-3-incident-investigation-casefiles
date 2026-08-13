@@ -16,7 +16,7 @@ The original P1-3 cases are preserved. Lab numbers describe the learning sequenc
 
 | Lab | Case folder | Difficulty | Primary skill | Status |
 |---|---|---|---|---|
-| 01 | `CASE-001-bruteforce-rdp` | Beginner | Failed-logon/password-spray investigation | Planned |
+| 01 | `CASE-001-bruteforce-rdp` | Beginner | Failed-logon/password-guessing investigation | Complete — coached, not replication-verified |
 | 02 | `CASE-002-suspicious-powershell` | Beginner | Process and PowerShell investigation | Planned |
 | 03 | `CASE-004-suspicious-dns` | Beginner | DNS anomaly investigation | Planned |
 | 04 | `CASE-005-suspicious-outbound-connection` | Beginner | Endpoint-to-network correlation | Planned |
@@ -54,7 +54,7 @@ Every investigation must contain:
 - [ ] sanitized evidence references
 - [ ] lessons learned and one detection/visibility improvement
 
-## Lab 01 — Failed Logins / Password Spray
+## Lab 01 — Failed Logins / Password Guessing
 
 Case: `cases/CASE-001-bruteforce-rdp/`
 

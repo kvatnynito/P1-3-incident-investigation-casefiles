@@ -16,13 +16,13 @@ This project is the final repo in Portfolio 1 and is planned to build on the lab
 
 ## Status
 
-**Current state:** Planned  
-**Execution state:** Ten-lab investigation curriculum scaffolded; no case executed yet
+**Current state:** In progress
+**Execution state:** CASE-001 completed; remaining cases planned
 **Prerequisites:** `P1-1-proxmox-segmentation-lab` and `P1-2-wef-sysmon-to-wazuh-elastic-splunk`
 
-The case folders, workflow, and starter scenarios have been defined before the first full investigation is built.
+The case folders, workflow, and starter scenarios are defined, and CASE-001 has now been completed end to end with evidence-backed scoping, detection, outcome verification, MITRE ATT&CK mapping, and disposition.
 
-The Windows → WEF → Splunk pipeline required by the first investigations is now validated in P1-2. Individual cases remain planned until their own scenario is executed and their evidence is captured. See [`docs/plan.md`](docs/plan.md) for the ordered curriculum.
+The Windows → WEF → Splunk pipeline required by the first investigations is validated. CASE-001 used that pipeline and also uncovered and repaired a real Security-channel forwarding gap; other cases remain planned until their own activity and evidence are captured. See [`docs/plan.md`](docs/plan.md) for the ordered curriculum.
 
 ---
 

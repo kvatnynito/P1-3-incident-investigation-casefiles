@@ -9,7 +9,7 @@ The ordered ten-lab curriculum and completion checklist live in [`../docs/plan.m
 
 | Case | Investigation | Curriculum position | Status |
 |---|---|---|---|
-| **CASE-001** | [Failed Logins / Password Spray](CASE-001-bruteforce-rdp/) | Lab 01 — Beginner | Planned |
+| **CASE-001** | [Failed Logins / Password Guessing](CASE-001-bruteforce-rdp/) | Lab 01 — Beginner | Complete — coached, not replication-verified |
 | **CASE-002** | [Suspicious PowerShell](CASE-002-suspicious-powershell/) | Lab 02 — Beginner | Planned |
 | **CASE-003** | [Web Attack (DVWA)](CASE-003-web-attack-dvwa/) | Additional P1-3 case | Planned / blocked on DVWA |
 | **CASE-004** | [Suspicious DNS Activity](CASE-004-suspicious-dns/) | Lab 03 — Beginner | Planned |

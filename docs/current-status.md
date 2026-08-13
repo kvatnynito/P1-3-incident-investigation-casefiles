@@ -6,7 +6,7 @@ Create sanitized, evidence-backed incident and security-operations case files fr
 
 ## Current Focus
 
-CASE-001-bruteforce-rdp is actively in progress. The Windows Security telemetry pipeline has been repaired and validated end to end, the controlled failed-logon event set has been scoped in Splunk, and a reusable threshold detection report has been validated and saved. The remaining work is analyst documentation: finalize the query record, timeline, ATT&CK mapping, disposition, response recommendations, tuning limitations, and incident report.
+CASE-001-bruteforce-rdp is complete. Telemetry was repaired, the event set was scoped, the detection was validated, and the outcome was confirmed as no compromise. Kevin used the account/source grouping evidence to justify Credential Access / T1110.001 (Password Guessing), distinguished attack behavior from incident outcome, and finalized the disposition as a benign authorized simulation. This was completed live with coaching and is not replication-verified. CASE-006 is the natural next investigation.
 
 ## Planning Completed (Does Not Earn a Skills-Ledger Entry)
 
@@ -36,6 +36,10 @@ Planning/scaffolding does not count as a completed investigation or validated an
 
 - 2026-08-12 — Repaired and revalidated the CASE-001 Security telemetry path from `TEST-WIN10-LAN1` through WEC01 into Splunk by diagnosing per-channel WEF access denial and applying a minimal, rollback-documented Security-channel ACL change.
 - 2026-08-12 — Built and validated a reusable Splunk threshold detection for repeated Windows network-logon failures, separated controlled Type 3 RDP/NLA activity from local Type 2 noise, and saved the detection as a private report under Splunk Free.
+- 2026-08-12 — Documented the validated SPL, threshold logic, and tuning limitations in both `cases/CASE-001-bruteforce-rdp/queries.md` (already current) and `detections/splunk/case-searches.md` (replaced the still-planned CASE-001 template with the real validated searches and findings).
+- 2026-08-12 — Built the evidence-backed CASE-001 timeline (`timeline.md`) and IOC/entity scope (`iocs.md`) from the validated 30-event Type 3 set, split into scenario activity vs. investigation/detection-engineering activity, and flagged the unresolved endpoint-vs-Splunk clock-display discrepancy noted during ingestion troubleshooting.
+- 2026-08-12 — Ran a live Splunk outcome check confirming zero successful logons (4624) and zero lockouts (4740) for `testuser1` from `10.10.10.30`, closing the case's last open investigation question with evidence rather than policy inference.
+- 2026-08-13 — Completed CASE-001's evidence-backed MITRE ATT&CK mapping and disposition live with coaching: mapped the one-account/many-attempt pattern to Credential Access / T1110.001 (Password Guessing), distinguished malicious behavior emulation from incident outcome, and classified the known authorized exercise as benign with no compromise.
 
 ## Ruled Out / Do Not Re-check
 
@@ -68,19 +72,17 @@ These were investigated and closed this session. Do not re-investigate any of th
 
 ## Next Actions
 
-1. Record the validated SPL, fixed-bucket threshold logic, Splunk Free limitation, false-positive considerations, and tuning notes in CASE-001's `queries.md` and public detection documentation.
-2. Build the evidence-backed CASE-001 timeline and IOC/entity scope from the validated Type 3 event set (`testuser1`, source `10.10.10.30`, target `TEST-WIN10-LAN1`).
-3. Complete the disposition, MITRE ATT&CK mapping, containment/response recommendations, lessons learned, and incident report.
-4. Review the dedicated private CASE-001 SOP against the public evidence and finish embedding any remaining screenshots.
-5. Keep rough or unsanitized work private; promote only sanitized, claim-supporting results to this public repo.
+1. Reconcile `AGENTS.md`'s competing Case File Standard with `docs/incident-report-template.md` before starting another case.
+2. Review and commit/push the completed CASE-001 changes in the public and private repos after Kevin's explicit approval.
+3. Start CASE-006 (bruteforce-vs-password-spray) as the direct follow-on investigation.
 
 ## Current Stopping Point
 
-CASE-001 is genuinely in progress. Controlled failed-logon activity is visible locally, at WEC01, and in Splunk; the Security-channel access failure is diagnosed and repaired; the relevant 30-event Type 3 pattern is scoped; and the threshold detection is validated and saved as a reusable private Splunk report. The case is not complete until its timeline, ATT&CK mapping, disposition, recommendations, tuning notes, and incident report are written and reviewed.
+CASE-001 is complete. Its evidence, searches, timeline, findings, MITRE ATT&CK mapping, disposition, recommendations, visibility improvements, and lessons learned are documented. Kevin finalized the mapping and disposition through a coached reasoning exercise; the skill remains replication-unverified.
 
 ## Next Safe Step
 
-Resume by documenting the validated detection and its limitations in CASE-001's `queries.md`, then build the evidence-backed timeline from the isolated 30-event Type 3 pattern. Do not reopen the resolved RDP, ICMP, WEF Security ACL, or end-to-end ingestion troubleshooting without genuinely new evidence.
+Review the completed changes, reconcile the project-level case template inconsistency, then commit/push both repos with Kevin's approval. Afterward, begin CASE-006 when ready. Do not reopen CASE-001's resolved RDP, ICMP, WEF Security ACL, telemetry, or outcome-check work without genuinely new evidence.
 
 ## Evidence Captured
 
@@ -153,7 +155,9 @@ Resume by documenting the validated detection and its limitations in CASE-001's 
 | `case-evidence-splunk-4625-controlled-rdp-event-set.png` | CASE-001 Step 3 - isolate controlled RDP failed-logon event set | Splunk isolates the controlled Event 4625 network-logon failures from source 10.10.10.30 with Logon Type 3, separating the case activity from unrelated local-console noise |
 | `case-evidence-splunk-failed-logon-threshold-detection.png` | CASE-001 Step 4 - validate failed-logon threshold detection | A generic Splunk threshold query detects at least five Windows network-logon failures per account and source within five minutes, correctly identifying the controlled testuser1 activity without hardcoding the account or source |
 | `case-evidence-splunk-detection-report-verified.png` | CASE-001 Step 4 - verify reusable Splunk detection report | The saved CASE-001 network-logon failure threshold report is present and reusable with its validated detection logic under Splunk Free |
+| `case-evidence-splunk-4624-outcome-zero-results.png` | CASE-001 Step 5 - outcome check: successful logon | `host=wec01 LogName=Security EventCode=4624 Account_Name=testuser1`, All time, 0 events - confirms the brute-force attempt never succeeded |
+| `case-evidence-splunk-4740-outcome-zero-results.png` | CASE-001 Step 5 - outcome check: account lockout | `host=wec01 LogName=Security EventCode=4740 Account_Name=testuser1`, All time, 0 events - confirms no lockout occurred, backed by search rather than assumed from policy |
 
 ## Current Summary
 
-CASE-001 is actively in progress with its telemetry blocker resolved. Genuine Security 4625 events now traverse TEST-WIN10-LAN1 → WEC01 → Splunk; 30 controlled Type 3 failures from `10.10.10.30` targeting `testuser1` were isolated from local Type 2 noise; and a generic five-minute threshold detection was validated and saved as a private Splunk report. The case is not complete: timeline, ATT&CK mapping, disposition, response recommendations, tuning notes, and the incident report remain. The other curriculum cases remain planned/scaffolded only.
+CASE-001 is complete: genuine Security 4625 events traverse TEST-WIN10-LAN1 → WEC01 → Splunk; 30 controlled Type 3 failures from `10.10.10.30` targeting `testuser1` were isolated from local Type 2 noise; a generic five-minute threshold detection was validated and saved as a private Splunk report; and a live outcome check confirmed zero successful logons and zero lockouts. The report maps the behavior to Credential Access / T1110.001 and disposes the incident as a benign authorized simulation with no compromise. The work was coached, not replication-verified. Other curriculum cases remain planned; CASE-006 is the natural next case.

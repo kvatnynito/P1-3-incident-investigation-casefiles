@@ -30,19 +30,21 @@ Splunk is where I do the “searching and pivoting” part of an investigation:
 
 ---
 
-# CASE-001: Brute Force / RDP (planned)
-Status: Planned (no implementation yet)
+# CASE-001: Brute Force / RDP
+Status: Scoping, threshold detection, and outcome check all validated. Disposition/ATT&CK mapping/incident report live in the case's own `README.md`.
+
+Full query text, validation results, and tuning notes live in `cases/CASE-001-bruteforce-rdp/queries.md`; this section summarizes the same investigation in the "what I looked for / what I found" narrative format used across this file.
 
 ## Goal (in plain English)
 Figure out:
 - who is being targeted
 - where the attempts came from
-- whether it succeeded (4624) or caused lockouts (4740)
+- whether it succeeded (4624) or caused lockouts (4740) — **answered: neither happened**
 
-## Quick setup info (fill in later)
-- Index: TBD
-- Sourcetype (Security): TBD
-- Time window: TBD
+## Setup info (confirmed)
+- Host field: `wec01` (WEF collector; forwards `TEST-WIN10-LAN1`'s Security channel)
+- Field names: `LogName`, `EventCode`, `Account_Name`, `Logon_Type`, `Source_Network_Address`
+- Time window used for the validated searches: All time (the controlled burst is small enough that a wide window doesn't add noise, and it sidesteps the endpoint/Splunk clock-display discrepancy noted in `timeline.md`)
 
 ---
 
@@ -50,30 +52,43 @@ Figure out:
 ### What I looked for
 A spike of failed logons (lots of 4625 events)
 
+```spl
+host="wec01" LogName=Security EventCode=4625
+```
+
 --
-What I found (fill in later)
+What I found
 
-Time window of spike: TBD
+This confirmed genuine failed-logon events reaching Splunk through WEC01 — but only after fixing a real telemetry gap first. The Security channel was silently failing to forward (`ErrorCode=5`, access denied) while Sysmon on the same host/subscription forwarded fine (`ErrorCode=0`). Root cause and fix are documented in `docs/current-status.md`; not repeated here since it's a one-time repair, not a reusable detection step.
 
-Top targeted user(s): TBD
+Top targeted user: `testuser1`
 
-Top source IP(s): TBD
+Top source IP: `10.10.10.30`
 
-Notes: TBD
+Notes: 30 total 4625 events once the pipeline was repaired, all Logon Type 3 (Network — expected for RDP/NLA pre-auth failures, not Type 10).
 
 ---
 
-## 2) Pivot: show raw events for the key user/host
-### What I looked for
+## 2) Pivot: separate the controlled activity from local noise
 
-Details around the spike (same user/host, narrower window)
+```spl
+host=wec01 LogName=Security EventCode=4625
+| stats count by Account_Name Logon_Type Source_Network_Address
+| sort -count
+```
 
 --
-What I found (fill in later)
+What I found
 
-Patterns seen (steady vs burst): TBD
+This grouping separated the controlled Type 3 network-logon failures (source `10.10.10.30`) from unrelated Type 2/loopback local-console failures already present in the environment. Isolating just the controlled set:
 
-Any repeated source(s): TBD
+```spl
+host=wec01 LogName=Security EventCode=4625 Logon_Type=3 Source_Network_Address=10.10.10.30
+```
+
+Result: 30 events, matching the local endpoint log count exactly — no forwarding loss.
+
+Pattern seen: burst, not steady — clusters into three groups rather than a flat drip (see threshold search below).
 
 ---
 
@@ -82,14 +97,15 @@ Any repeated source(s): TBD
 
 Did a successful login happen after the failures?
 
+```spl
+host=wec01 LogName=Security EventCode=4624 Account_Name=testuser1
+```
+Time range: All time.
+
 --
-What I found (fill in later)
+What I found
 
-Success observed? (yes/no): TBD
-
-If yes, time of success: TBD
-
-Source IP tied to success: TBD
+Success observed? **No.** 0 events. The brute-force attempt never succeeded — every one of the 30 attempts failed. (`case-evidence-splunk-4624-outcome-zero-results.png`)
 
 ---
 
@@ -98,30 +114,53 @@ Source IP tied to success: TBD
 
 Did the targeted account get locked?
 
+```spl
+host=wec01 LogName=Security EventCode=4740 Account_Name=testuser1
+```
+Time range: All time.
+
 --
-What I found (fill in later)
+What I found
 
-Lockout observed? (yes/no): TBD
+Lockout observed? **No.** 0 events, confirmed by search rather than assumed from the pre-activity policy check alone. (`case-evidence-splunk-4740-outcome-zero-results.png`)
 
-Which user locked: TBD
-
-Which host reported it: TBD
+Worth flagging as a hardening gap even though it wasn't exploited here: the local lockout threshold was `Never`, so nothing would have stopped a real attacker from getting far more than 30 guesses.
 
 ---
 
-## 5) Optional pivot: correlate with Sysmon (if available)
+## 5) Threshold detection (validated)
+### What I looked for
+
+A reusable detection for "too many failed network logons for one account/source in a short window" that doesn't hardcode the account or source name.
+
+```spl
+host=wec01 LogName=Security EventCode=4625 Logon_Type=3
+| eval account=mvindex(Account_Name,-1)
+| bin _time span=5m
+| stats count by _time account Source_Network_Address
+| where count>=5
+```
+
+--
+What I found
+
+Three qualifying 5-minute buckets for `testuser1` from `10.10.10.30`: counts of 13, 8, and 5. Saved as the enabled, Private Splunk report `CASE-001 - Network Logon Failure Threshold`.
+
+**Known limitations** (full list in `cases/CASE-001-bruteforce-rdp/queries.md`):
+- Fixed (non-rolling) 5-minute buckets — activity split across a bucket boundary could evade the threshold.
+- `mvindex(Account_Name,-1)` was validated against this one event shape only, not a range of Windows event variations.
+- No allowlisting yet for expected service accounts, scanners, or help-desk activity that might legitimately generate failed logons.
+- Splunk Free has no scheduled alerting — this is a saved/rerunnable report, not a deployed automated alert. Don't describe it as one.
+
+## 6) Optional pivot: correlate with Sysmon (if available)
 ### What I looked for
 
 If a login succeeded, did anything suspicious happen next? (PowerShell, new processes, network connections)
 
 --
-What I found (fill in later)
+What I found
 
-Suspicious processes observed? TBD
-
-Network connections observed? TBD
-
-Notes: TBD
+Not applicable — step 3 confirmed no successful logon occurred, so there is no post-authentication activity to correlate against.
 
 ---
 
