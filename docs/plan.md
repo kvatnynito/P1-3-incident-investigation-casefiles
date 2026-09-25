@@ -12,7 +12,7 @@ Generating an event is not completion. A lab is complete only when the observed 
 
 ## How the Labs Are Organized
 
-The original P1-3 cases are preserved. Lab numbers describe the learning sequence; case numbers are stable public identifiers. `CASE-003-web-attack-dvwa` remains part of P1-3 but is outside this ten-lab CySA+-aligned sequence.
+The original P1-3 cases are preserved. Lab numbers describe the learning sequence; case numbers are stable public identifiers. `CASE-003-web-attack-dvwa` and `CASE-012-phishing-email-triage` remain part of P1-3 but are outside this ten-lab CySA+-aligned sequence.
 
 | Lab | Case folder | Difficulty | Primary skill | Status |
 |---|---|---|---|---|
@@ -184,6 +184,27 @@ Case: `cases/CASE-011-lateral-movement/`
 6. Determine what resources or systems were accessed.
 7. Map the activity to MITRE ATT&CK.
 8. Document the attack path and recommended containment.
+
+## Additional Case — Phishing Email Header and Triage
+
+Case: `cases/CASE-012-phishing-email-triage/`
+
+Added 2026-09-24 from repeated SOC-posting demand for first-pass phishing triage. Needs no VM or Splunk telemetry — header, DNS, and reputation analysis run on the Fedora workstation — so it can run independently of the Windows lab sequence. First in the approved 2026-09-24 sequence, ahead of the CASE-002 closeout. **Required script (Kevin writes it):** a Python header parser using the stdlib `email` module that extracts the `Received` chain and `Authentication-Results`.
+
+1. Record ground truth for a known-good baseline `.eml` and a suspicious `.eml`.
+2. Export raw sources; never click links or open attachments.
+3. Reconstruct the delivery path from the `Received` chain, with hop timing.
+4. Compare `From`, `Return-Path`, `Reply-To`, and `Message-ID` domains.
+5. Read `Authentication-Results` for SPF, DKIM, and DMARC, including alignment.
+6. Cross-check published SPF/DMARC/DKIM records with `dig`; verify the DKIM signature independently where possible.
+7. Extract, defang, and reputation-check URLs using existing lookups only.
+8. Hash attachments and check hash reputation only — no opening, uploading, or detonation.
+9. Contrast suspicious vs. baseline field by field.
+10. Map to MITRE ATT&CK (T1566.001 / T1566.002 as supported by the sample).
+11. Classify with supporting evidence.
+12. Recommend containment and remediation (sender block, mailbox purge, URL block, credential follow-up).
+
+The common completion gate applies, with header/DNS/reputation evidence standing in for SIEM query results. Raw `.eml` files stay in the private `soc-detection-practice` companion.
 
 ## Career Translation
 

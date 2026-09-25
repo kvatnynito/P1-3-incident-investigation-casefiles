@@ -20,6 +20,7 @@ The ordered ten-lab curriculum and completion checklist live in [`../docs/plan.m
 | **CASE-009** | [Privilege Escalation](CASE-009-privilege-escalation/) | Lab 08 — Intermediate | Planned |
 | **CASE-010** | [Persistence](CASE-010-persistence/) | Lab 09 — Intermediate | Planned |
 | **CASE-011** | [Lateral Movement](CASE-011-lateral-movement/) | Lab 10 — Advanced | Planned / second Windows telemetry source required |
+| **CASE-012** | [Phishing Email Header and Triage](CASE-012-phishing-email-triage/) | Additional P1-3 case | Planned — no VM required |
 
 ## Folder Structure (per case)
 Each case should include:
