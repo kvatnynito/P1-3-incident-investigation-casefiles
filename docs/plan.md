@@ -17,7 +17,7 @@ The original P1-3 cases are preserved. Lab numbers describe the learning sequenc
 | Lab | Case folder | Difficulty | Primary skill | Status |
 |---|---|---|---|---|
 | 01 | `CASE-001-bruteforce-rdp` | Beginner | Failed-logon/password-guessing investigation | Complete — coached, not replication-verified |
-| 02 | `CASE-002-suspicious-powershell` | Beginner | Process and PowerShell investigation | Planned |
+| 02 | `CASE-002-suspicious-powershell` | Beginner | Process and PowerShell investigation | In progress — local Sysmon evidence validated; downstream correlation next |
 | 03 | `CASE-004-suspicious-dns` | Beginner | DNS anomaly investigation | Planned |
 | 04 | `CASE-005-suspicious-outbound-connection` | Beginner | Endpoint-to-network correlation | Planned |
 | 05 | `CASE-006-bruteforce-vs-password-spray` | Intermediate | Authentication-pattern differentiation | Planned |

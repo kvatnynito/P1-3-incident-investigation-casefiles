@@ -1,6 +1,6 @@
 # CASE-002: Suspicious PowerShell Execution
 
-**Status:** Planned / not validated
+**Status:** In progress — clean controlled scenario generated and validated locally in Sysmon; WEC01/Splunk correlation next
 **Curriculum position:** Lab 02 — Beginner
 
 ## Scenario Summary
@@ -27,9 +27,9 @@ Use only benign commands designed to create observable telemetry. Do not use liv
 - Build a clean timeline from process creation and related artifacts
 
 ## Lab Context (Representative)
-- Source (operator/attacker): TBD (optional)
-- Target endpoint: TBD (e.g., AD-WIN10 / AD-WIN11)
-- Execution method: TBD (interactive / scheduled task / remote exec)
+- Source (operator): local interactive session on `TEST-WIN10-LAN1`
+- Target endpoint: `TEST-WIN10-LAN1`
+- Execution method: interactive PowerShell launched from Command Prompt
 
 > Note: Hostnames/IPs in this case may be modified for safety.
 
