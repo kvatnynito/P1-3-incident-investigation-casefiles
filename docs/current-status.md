@@ -6,7 +6,7 @@ Create sanitized, evidence-backed incident and security-operations case files fr
 
 ## Current Focus
 
-**Approved sequence, 2026-09-24:** `CASE-012-phishing-email-triage` is now the active P1-3 work (target ~2026-10-12). No VM needed. Kevin writes the Python header parser himself. The `CASE-002` closeout follows it (target ~2026-10-19). The CASE-002 detail below is still accurate and is where that closeout resumes.
+**Approved sequence, 2026-09-24:** `CASE-012-phishing-email-triage` is now the active P1-3 work (resume marker `case012-start`, target ~2026-10-12). No VM needed. Kevin writes the Python header parser himself. The `CASE-002` closeout follows it (target ~2026-10-19). The CASE-002 detail below is still accurate and is where that closeout resumes.
 
 CASE-002-suspicious-powershell is active, selected specifically to build endpoint/process-investigation breadth for the MUFG Threat Detection & Response Tier 1 Analyst role. A fresh controlled v3 scenario was generated locally on `TEST-WIN10-LAN1` on 2026-08-17 around 8:50 AM: Command Prompt launched PowerShell, PowerShell created the harmless marker `C:\Users\Public\cases002-v3.ps1` (filename typo intentional as unique v3 identifier), and PowerShell resolved `example.com`. Local Sysmon validation is now complete, proving process execution (Event ID 1 at 8:46 AM), exact marker-file creation (Event ID 11 at 8:49 AM), and successful DNS resolution (Event ID 22 at 8:49:26 AM), all with matching ProcessGuid. WEC01 Forwarded Events correlation is next. CASE-001 remains complete and pushed.
 
