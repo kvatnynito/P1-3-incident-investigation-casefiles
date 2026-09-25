@@ -1,6 +1,6 @@
 # CASE-012: Phishing Email Header and Triage Investigation
 
-**Status:** Active next (approved 2026-09-24, target ~2026-10-12) — no VM required
+**Status:** Active next (approved 2026-09-24, deadline end of October 2026) — no VM required
 **Curriculum position:** Additional P1-3 case (outside the ten-lab Windows telemetry sequence, like CASE-003)
 
 ## Objective

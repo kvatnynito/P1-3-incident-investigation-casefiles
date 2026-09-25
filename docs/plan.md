@@ -189,7 +189,7 @@ Case: `cases/CASE-011-lateral-movement/`
 
 Case: `cases/CASE-012-phishing-email-triage/`
 
-Added 2026-09-24 from repeated SOC-posting demand for first-pass phishing triage. Needs no VM or Splunk telemetry — header, DNS, and reputation analysis run on the Fedora workstation — so it can run independently of the Windows lab sequence. First in the approved 2026-09-24 sequence, ahead of the CASE-002 closeout. **Required script (Kevin writes it):** a Python header parser using the stdlib `email` module that extracts the `Received` chain and `Authentication-Results`.
+Added 2026-09-24 from repeated SOC-posting demand for first-pass phishing triage. Needs no VM or Splunk telemetry — header, DNS, and reputation analysis run on the Fedora workstation — so it can run independently of the Windows lab sequence. First in the approved 2026-09-24 sequence (deadline October 2026), ahead of the CASE-002 closeout (November) and CASE-007 (December). **Required script (Kevin writes it):** a Python header parser using the stdlib `email` module that extracts the `Received` chain and `Authentication-Results`.
 
 1. Record ground truth for a known-good baseline `.eml` and a suspicious `.eml`.
 2. Export raw sources; never click links or open attachments.

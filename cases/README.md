@@ -15,7 +15,7 @@ The ordered ten-lab curriculum and completion checklist live in [`../docs/plan.m
 | **CASE-004** | [Suspicious DNS Activity](CASE-004-suspicious-dns/) | Lab 03 — Beginner | Planned |
 | **CASE-005** | [Suspicious Outbound Connection](CASE-005-suspicious-outbound-connection/) | Lab 04 — Beginner | Planned |
 | **CASE-006** | [Brute Force vs. Password Spraying](CASE-006-bruteforce-vs-password-spray/) | Lab 05 — Intermediate | Planned |
-| **CASE-007** | [Vulnerability Management](CASE-007-vulnerability-management/) | Lab 06 — Intermediate | Planned / scanner prerequisite |
+| **CASE-007** | [Vulnerability Management](CASE-007-vulnerability-management/) | Lab 06 — Intermediate | Next after CASE-002 (deadline December 2026) / scanner prerequisite |
 | **CASE-008** | [Suspicious File Simulation](CASE-008-suspicious-file-simulation/) | Lab 07 — Intermediate | Planned |
 | **CASE-009** | [Privilege Escalation](CASE-009-privilege-escalation/) | Lab 08 — Intermediate | Planned |
 | **CASE-010** | [Persistence](CASE-010-persistence/) | Lab 09 — Intermediate | Planned |

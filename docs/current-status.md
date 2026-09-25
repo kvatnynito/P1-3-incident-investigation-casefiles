@@ -6,7 +6,7 @@ Create sanitized, evidence-backed incident and security-operations case files fr
 
 ## Current Focus
 
-**Approved sequence, 2026-09-24:** `CASE-012-phishing-email-triage` is now the active P1-3 work (resume marker `case012-start`, target ~2026-10-12). No VM needed. Kevin writes the Python header parser himself. The `CASE-002` closeout follows it (target ~2026-10-19). The CASE-002 detail below is still accurate and is where that closeout resumes.
+**Approved sequence, 2026-09-24:** `CASE-012-phishing-email-triage` is now the active P1-3 work (resume marker `case012-start`, deadline end of October 2026). No VM needed. Kevin writes the Python header parser himself. Then the `CASE-002` closeout (November 2026), then `CASE-007` vulnerability management (December 2026, added by Kevin). The other cases are optional backlog. The CASE-002 detail below is still accurate and is where that closeout resumes.
 
 CASE-002-suspicious-powershell is active, selected specifically to build endpoint/process-investigation breadth for the MUFG Threat Detection & Response Tier 1 Analyst role. A fresh controlled v3 scenario was generated locally on `TEST-WIN10-LAN1` on 2026-08-17 around 8:50 AM: Command Prompt launched PowerShell, PowerShell created the harmless marker `C:\Users\Public\cases002-v3.ps1` (filename typo intentional as unique v3 identifier), and PowerShell resolved `example.com`. Local Sysmon validation is now complete, proving process execution (Event ID 1 at 8:46 AM), exact marker-file creation (Event ID 11 at 8:49 AM), and successful DNS resolution (Event ID 22 at 8:49:26 AM), all with matching ProcessGuid. WEC01 Forwarded Events correlation is next. CASE-001 remains complete and pushed.
 
@@ -82,6 +82,7 @@ These were investigated and closed this session. Do not re-investigate any of th
 3. **Then the CASE-002 closeout (VMs on):** correlate the v3 activity (2026-08-17, ~8:49-8:50 AM Arizona) in WEC01 Forwarded Events using Event IDs 1, 11, and 22, the marker filename `cases002-v3.ps1`, `example.com`, and the ProcessGuid chain established locally.
 4. Search Splunk for the same activity through the validated `WEC01` source and record the reusable pivots in CASE-002 `queries.md`.
 5. Build the evidence-backed timeline and decide what the observed activity proves before disposition or ATT&CK mapping. Sanitization-check `screenshots/case002/` before committing it (left uncommitted on 2026-09-24 for this reason).
+6. **Then CASE-007 (December 2026):** pick the scanner (Greenbone/OpenVAS vs. Nessus Essentials), then work `docs/plan.md` Lab 06 against `VULN-METASPLOITABLE2`.
 
 ## Current Stopping Point
 
